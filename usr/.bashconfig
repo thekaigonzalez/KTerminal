@@ -1,0 +1,11 @@
+[User]
+Working_Directory=./
+
+[Buffer]
+Encoding=utf-8
+
+[Bash]
+; custom message.
+hello_world_message=Hello, World
+# Authenticates the app. If the app ID is different, count it as corrupted.
+app_id=c40d97f4-b699-11eb-8529-0242ac130003
