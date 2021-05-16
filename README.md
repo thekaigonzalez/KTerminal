@@ -1,4 +1,7 @@
+![img_1.png](img_1.png)
+
 # KTerminal
+
 KTerminal is a light, easy to use Python 3.9 Terminal that 
 was perfected and published on May 15th. With over 10 commands (Builtin, and external),
 the console has been built to support over 50 different compilers.
