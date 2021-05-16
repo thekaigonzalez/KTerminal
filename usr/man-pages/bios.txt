@@ -1,0 +1,13 @@
+BIOS
+
+    BIOS is a feature of the KTerminal that allows certain features to be enabled. Once these features are enabled,
+    they stay for the entire session. Until restart.
+
+    BIOS Features include:
+
+        - No Error Suppression. Good for testing new features & Addons.
+        - Python Error Logs.
+        - Logs.
+        - Certain Commands (diagnostic)
+        - Any beta features that planned to be added to newer versions.
+

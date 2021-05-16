@@ -1,0 +1,2 @@
+If you're getting this distro from the official homepage, home.kai-builder.ml/KTerminal, This is where Python scripts for
+the terminal are stored. Open hello.py to learn how the terminal caches these scripts.
