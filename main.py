@@ -9,6 +9,9 @@ import curses
 import platform
 from curses import wrapper
 false = False
+import configparser
+
+
 true = True
 def cprintf(__scr, Text):
     __scr.addstr(Text + "\n")
@@ -18,11 +21,19 @@ def mainc(scr):
     bios = false
     debug = false
     beta = false
+    wd = "./"
     argc = len(sys.argv)
     if argc >= 2:
         if sys.argv[1] == "--bios":
             bios = true
+        elif sys.argv[1] == "--beta":
+            beta = true
+        elif sys.argv[1] == '--deb':
+            debug = true
     stdscr = curses.initscr()
+    cfg = configparser.ConfigParser()
+    configs = cfg.read('./usr/.bashconfig') # Load bash settings
+    wd = cfg["User"]["Working_Directory"]
     stdscr.scrollok(True)
     stdscr.clear()
     curses.init_pair(1, curses.COLOR_RED, curses.A_NORMAL)
@@ -30,12 +41,13 @@ def mainc(scr):
     stdscr.addstr("[" + platform.python_compiler()  + "] KTerminal Version 1.0\nType 'help' for a list of commands.\n\n", curses.color_pair(1))
     stdscr.refresh()
     history = []
+
     curses.echo()
     cmp = 0
     while True:
         stdscr.addstr("root", curses.color_pair(2))
         stdscr.addstr(" -# ")
-        c = stdscr.getstr ().decode(encoding="utf-8")
+        c = stdscr.getstr ().decode(encoding=cfg["Buffer"]["Encoding"])
         curses.nocbreak()
         kt_argv = str(c).split(" ")
 
@@ -43,14 +55,14 @@ def mainc(scr):
         history.append(kt_command)
         cmp += 1
         kt_argc = len(kt_argv)
-        wd = "./"
+
         if kt_command == "leave":
             curses.endwin()
         elif kt_command == "help":
             stdscr.addstr("Commands:\nls\n")
         elif kt_command == "ls":
 
-            if kt_argv[0] is None:
+            if kt_argc == 0:
                 stdscr.addstr("Description: Lists Subdirectories in a given directory\nUsage: ls [-opts] [dir] or ls "
                               "[dir]\n")
             else:
@@ -130,7 +142,7 @@ def mainc(scr):
             try:
 
                 module = ipl.import_module('usr.bin.' + kt_command)
-                module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta])
+                module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd])
             except Exception as e:
                 if bios == true:
                     stdscr.addstr(e.__str__()  + "\n")
