@@ -29,14 +29,19 @@ def mainc(scr):
     curses.init_pair(2, curses.COLOR_CYAN, curses.A_NORMAL)
     stdscr.addstr("[" + platform.python_compiler()  + "] KTerminal Version 1.0\nType 'help' for a list of commands.\n\n", curses.color_pair(1))
     stdscr.refresh()
+    history = []
     curses.echo()
+    cmp = 0
     while True:
         stdscr.addstr("root", curses.color_pair(2))
         stdscr.addstr(" -# ")
         c = stdscr.getstr ().decode(encoding="utf-8")
         curses.nocbreak()
         kt_argv = str(c).split(" ")
+
         kt_command = kt_argv.pop(0)
+        history.append(kt_command)
+        cmp += 1
         kt_argc = len(kt_argv)
         wd = "./"
         if kt_command == "leave":
@@ -118,6 +123,8 @@ def mainc(scr):
                 stdscr.addstr("new window proportions are " + kt_argv[0] + "," + kt_argv[1])
             else:
                 stdscr.addstr("BIOS Tools are not set up properly.\nThis command is a BIOS only tool. Please run the program with the --bios argument and try again.\n")
+        elif kt_command == "last_command":
+            stdscr.addstr(history[cmp-2])
         else:
 
             try:
