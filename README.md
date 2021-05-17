@@ -15,3 +15,26 @@ The KTerminal features a Unix-Like file structure containing a ./usr directory,
 which stores python caches and essential files.
 
 Please enjoy this bash. Star it if you do.
+
+# A Tour Inside KTerminal
+## Directories
+The directories in KTerminal are based off of the linux
+source tree. featuring usr, drivers, crypto, and fs. As
+well as a system.home directory where apps are stored.
+## Apps & Games
+The games that come packaged in feature
+- vim
+
+It isn't really vim, it's just a console-based text editor.
+vim for KTerminal is in early access and is currently just a
+writing program with a basic text box.
+
+there's also a application handler built in.
+
+## PKG
+Package manager. Uses Https to gather information and
+install features.
+
+the package manager searches links (usually github), 
+for a repository corresponding with the arguments.
+it then checks for the main file and downloads it to your scripts directory.
