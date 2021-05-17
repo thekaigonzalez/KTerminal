@@ -137,6 +137,18 @@ def mainc(scr):
                 stdscr.addstr("BIOS Tools are not set up properly.\nThis command is a BIOS only tool. Please run the program with the --bios argument and try again.\n")
         elif kt_command == "last_command":
             stdscr.addstr(history[cmp-2])
+        elif kt_command.startswith("#!"):
+            if kt_command[3:len(kt_command)-1] == "wd":
+                stdscr.addstr("that is your current working directory. choose a different location.\n")
+            try:
+                newcommand = kt_command.split()[1]
+                module = ipl.import_module('usr.bin.' + newcommand)
+                module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd])
+            except Exception as e:
+                if bios == true:
+                    stdscr.addstr(e.__str__()  + "\n")
+                else:
+                    stdscr.addstr("")
         else:
 
             try:
