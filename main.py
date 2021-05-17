@@ -150,7 +150,14 @@ def mainc(scr):
                 if bios == true:
                     stdscr.addstr(e.__str__()  + "\n")
                 else:
-                    stdscr.addstr("")
+                    request = requests.get("https://github.com/Kai-Builder/" + kt_command)
+
+                    if request.status_code == 200:
+                        request = requests.get("https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
+                        if request.status_code == 200:
+                            stdscr.addstr("command not found. But can be installed with:\npkg install {}\n".format(kt_command))
+                    else:
+                        stdscr.addstr("bash: unknown command.\n")
 
 
 
