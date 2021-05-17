@@ -40,11 +40,18 @@ def main(s, a, c , opts):
                     d = open("usr/bin/" + a[1] + ".py", 'w')
                     d.write(c.text)
                     d.close()
+                    s.addstr("Success!\n")
 
             else:
                 s.addstr("Failed to find the module in verified space. checking for module as a github repository.\n")
                 req = requests.get(link_external)
                 if req.status_code == 200:
                     s.addstr("Module found as GitHub repository. Installing. . .\n")
+                    curses.napms(2000)
+                    c = requests.request('GET', link_external_rawcontentlink + "/master/" + a[1] + ".py")
+                    d = open("usr/bin/" + a[1] + ".py", 'w')
+                    d.write(c.text)
+                    d.close()
+                    s.addstr("Success!\n")
                 else:
                     s.addstr("module for {} not found.\n".format(a[1]))
