@@ -104,15 +104,7 @@ def mainc(scr):
             stdscr.addstr("new files and caches will be made in " + wd + " now.\n")
         elif kt_command == "clear":
             stdscr.clear()
-        elif kt_command == "curl":
-            if kt_argc == 0:
-                stdscr.addstr("The CURL Command line tool. Use for KTerminal.\n")
-            else:
-                if kt_argv[0] == "-h":
-                    cprintf(stdscr, "The curl command line tool implemented for KTerminal.")
-                elif kt_argv[0] == "-gFu":
-                    if kt_argc == 0:
-                        cprintf(stdscr, "missing required <url> argument.")
+
         elif kt_command == "printf":
             for arg in kt_argv:
                 stdscr.addstr(arg)
