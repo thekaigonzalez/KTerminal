@@ -40,3 +40,13 @@ install features.
 the package manager searches links (usually github), 
 for a repository corresponding with the arguments.
 it then checks for the main file and downloads it to your scripts directory.
+# KTerminal Internals
+## usr
+The usr directory contains the bin, man-pages, and local subdirectories.
+
+this contains user caches and files.
+
+## system
+system is the opposer to usr, containing home/apps
+and home/appscripts (where app scripts are usually stored),
+system is a very safer and much cleaner area.
