@@ -1,2 +1,10 @@
 all:
-	gcc usr/wd/_hndmal.c -o usr/local/hndl.mcs
+	gcc usr/wd/_hndmal.c usr/wd/_wdhdlapi.c -lcurses -o usr/local/hndl
+
+
+
+run:
+	python3 main.py
+
+clean:
+	rm usr/local/hndl.mcs
