@@ -1,6 +1,6 @@
 all:
-	gcc usr/wd/_hndmal.c usr/wd/_wdhdlapi.c -lcurses -o usr/local/hndl
-
+	gcc usr/wd/_hndmal.c usr/wd/_wdhdlapi.c -lcurses -o usr/clib/hndl
+	gcc usr/wd/_hndmal.c usr/wd/_cmalloc.c -lcurses -o usr/clib/memsets.da
 
 
 run:
