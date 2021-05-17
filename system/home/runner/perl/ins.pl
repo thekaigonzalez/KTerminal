@@ -1,6 +1,6 @@
 use strict;
 
-
+use shared;
 use Curses;
 initscr;
 
