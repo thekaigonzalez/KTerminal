@@ -1,7 +1,7 @@
 # RUN KTERMINAL FROM YOUR KTEMRINAL
 
 # this is for embedded runtimes.
-
+# THIS DOES NOT COME WITH THE DEFAULT BRANCH OF KTERMINAL
 # install this using pkg install KTerminal
 
 def main(s, a, c, o):
