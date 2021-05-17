@@ -19,7 +19,7 @@ Please enjoy this bash. Star it if you do.
 # A Tour Inside KTerminal
 ## Directories
 The directories in KTerminal are based off of the linux
-source tree. featuring usr, drivers, crypto, and fs. As
+source tree. featuring usr, drivers, and fs. As
 well as a system.home directory where apps are stored.
 ## Apps & Games
 The games that come packaged in feature
