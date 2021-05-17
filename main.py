@@ -104,7 +104,6 @@ def mainc(scr):
             stdscr.addstr("new files and caches will be made in " + wd + " now.\n")
         elif kt_command == "clear":
             stdscr.clear()
-
         elif kt_command == "printf":
             for arg in kt_argv:
                 stdscr.addstr(arg)
