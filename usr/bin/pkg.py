@@ -3,6 +3,7 @@
 
 #(REPLACEMENT FOR SUDO. SUDO DOES NOT WORK AS WELL. AND IS ABANDONED AND DEPRECATED)
 import curses
+import os
 
 import time
 
@@ -41,6 +42,22 @@ def main(s, a, c , opts):
                     d.write(c.text)
                     d.close()
                     s.addstr("Success!\n")
+                    curses.napms(1000)
+                    daak = requests.get(link_base_rawcontentlink + "/master/" + "deps.txt")
+                    if daak.status_code == 200:
+                        s.addstr("installing dependencies for " + a[1] + "\n")
+                        curses.napms(500)
+                        dep = open('cache-deps.txt', 'w')
+                        dep.write(daak.text)
+                        dep.close()
+                        deps = open('cache-deps.txt', 'r')
+                        ar = deps.readlines()
+                        for i in ar:
+                            os.system('pip3 install ' + i)
+                        deps.close()
+                        os.rmdir('cache-deps.txt')
+                    else:
+                        s.addstr(a[1] + " does not require any more dependencies. install success\n")
 
             else:
                 s.addstr("Failed to find the module in verified space. checking for module as a github repository.\n")
