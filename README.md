@@ -1,4 +1,3 @@
-(REMINDER: ALL COMMANDS WILL NO LONGER BE MADE INSIDE OF MAIN.PY, THE USR.BIN DIRECTORY IS PRIORITY. AS WELL AS THE HOME APPS DIR.)
 
 ![img_1.png](img_1.png)
 
@@ -12,6 +11,8 @@ KTerminal contains a bunch of symbols, and it's skeleton was built
 upon inspiration from the original BASH terminal, in 
 combination with the Arch Linux pre-setup terminal.
 ![img.png](img.png)
+
+![img.png](img_2.png)
 
 The KTerminal features a Unix-Like file structure containing a ./usr directory,
 which stores python caches and essential files.
