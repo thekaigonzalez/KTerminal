@@ -51,3 +51,7 @@ this contains user caches and files.
 system is the opposer to usr, containing home/apps
 and home/appscripts (where app scripts are usually stored),
 system is a very safer and much cleaner area.
+
+## usr/sbin
+C Binaries are run in this location.
+C Scripts & Binaries are run from here.
