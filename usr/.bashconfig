@@ -1,5 +1,5 @@
 [User]
-Working_Directory=./
+Working_Directory=./usr/local
 
 [Buffer]
 Encoding=utf-8
