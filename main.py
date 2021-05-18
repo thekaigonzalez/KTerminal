@@ -38,7 +38,7 @@ def mainc(scr):
     stdscr.clear()
     curses.init_pair(1, curses.COLOR_RED, curses.A_NORMAL)
     curses.init_pair(2, curses.COLOR_CYAN, curses.A_NORMAL)
-    stdscr.addstr("[" + platform.python_compiler()  + "] KTerminal Version 1.0\nType 'help' for a list of commands.\n\n", curses.color_pair(1))
+    stdscr.addstr("[" + platform.python_compiler()  + "] KTerminal Version 1.3\nType 'help' for a list of commands.\n\n", curses.color_pair(1))
     stdscr.refresh()
     history = []
 
