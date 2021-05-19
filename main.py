@@ -8,15 +8,21 @@ import importlib as ipl
 import curses
 import platform
 from curses import wrapper
+
 false = False
 import configparser
 
-
 true = True
+
+
 def cprintf(__scr, Text):
     __scr.addstr(Text + "\n")
+
+
 def require(module):
     return ipl.import_module(module)
+
+
 def mainc(scr):
     bios = false
     debug = false
@@ -32,13 +38,14 @@ def mainc(scr):
             debug = true
     stdscr = curses.initscr()
     cfg = configparser.ConfigParser()
-    configs = cfg.read('./usr/.bashconfig') # Load bash settings
+    configs = cfg.read('./usr/.bashconfig')  # Load bash settings
     wd = cfg["User"]["Working_Directory"]
     stdscr.scrollok(True)
     stdscr.clear()
     curses.init_pair(1, curses.COLOR_RED, curses.A_NORMAL)
     curses.init_pair(2, curses.COLOR_CYAN, curses.A_NORMAL)
-    stdscr.addstr("[" + platform.python_compiler()  + "] KTerminal Version 1.3\nType 'help' for a list of commands.\n\n", curses.color_pair(1))
+    stdscr.addstr("[" + platform.python_compiler() + "] KTerminal Version 1.3\nType 'help' for a list of commands.\n\n",
+                  curses.color_pair(1))
     stdscr.refresh()
     history = []
 
@@ -47,7 +54,7 @@ def mainc(scr):
     while True:
         stdscr.addstr("root", curses.color_pair(2))
         stdscr.addstr(" -# ")
-        c = stdscr.getstr ().decode(encoding=cfg["Buffer"]["Encoding"])
+        c = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
         curses.nocbreak()
         kt_argv = str(c).split(" ")
 
@@ -68,14 +75,14 @@ def mainc(scr):
             else:
 
                 for file in os.listdir(kt_argv[0]):
-                        stdscr.addstr("~/" + kt_argv[0] + "/" + file + "\n")
+                    stdscr.addstr("~/" + kt_argv[0] + "/" + file + "\n")
         elif kt_command == "pwd":
             stdscr.addstr("Choose a UserName: ")
             username = stdscr.getstr()
             curses.noecho()
             stdscr.addstr("Choose a Password: ")
             password = stdscr.getstr()
-            stdscr.addstr("Verify Password: " )
+            stdscr.addstr("Verify Password: ")
             vp = stdscr.getstr()
             curses.echo()
             if password == vp:
@@ -88,13 +95,16 @@ def mainc(scr):
                 stdscr.addstr("Bash User Failed. Passwords do not match.\n")
         elif kt_command == "diagnostic":
             if bios == true:
-                stdscr.addstr("Current System Specs\n\t\tProcessor\n\t\t" + platform.processor().__str__() + "\t\t\tArchitecture\n\t\t\t\t" + platform.architecture().__str__() + "\n\n")
+                stdscr.addstr(
+                    "Current System Specs\n\t\tProcessor\n\t\t" + platform.processor().__str__() + "\t\t\tArchitecture\n\t\t\t\t" + platform.architecture().__str__() + "\n\n")
             else:
-                stdscr.addstr("BIOS Is not set up correctly.\nRun the Python file with the --bios argument, and try again.\n")
+                stdscr.addstr(
+                    "BIOS Is not set up correctly.\nRun the Python file with the --bios argument, and try again.\n")
         elif kt_command == "sudo":
             if kt_argv[0] == "get-apt":
                 if kt_argv[1] == "-h":
-                    stdscr.addstr("Description: Gets a File (or package...file(S)) from a given website.\nspecify directories using the sudo -online <link> Commands.\nUsage: sudo get-apt <module>\n")
+                    stdscr.addstr(
+                        "Description: Gets a File (or package...file(S)) from a given website.\nspecify directories using the sudo -online <link> Commands.\nUsage: sudo get-apt <module>\n")
             elif kt_argv[0] == "--help":
                 stdscr.addstr("Runs given commands into ROOT.\nBase commands:\n\tget-apt\n\tsu_dev\n\tworking_dir\n")
         elif kt_command == "wd":
@@ -125,11 +135,12 @@ def mainc(scr):
                 stdscr.resize(int(kt_argv[0]), int(kt_argv[1]))
                 stdscr.addstr("new window proportions are " + kt_argv[0] + "," + kt_argv[1])
             else:
-                stdscr.addstr("BIOS Tools are not set up properly.\nThis command is a BIOS only tool. Please run the program with the --bios argument and try again.\n")
+                stdscr.addstr(
+                    "BIOS Tools are not set up properly.\nThis command is a BIOS only tool. Please run the program with the --bios argument and try again.\n")
         elif kt_command == "last_command":
-            stdscr.addstr(history[cmp-2])
+            stdscr.addstr(history[cmp - 2])
         elif kt_command.startswith("#!"):
-            if kt_command[3:len(kt_command)-1] == "wd":
+            if kt_command[3:len(kt_command) - 1] == "wd":
                 stdscr.addstr("that is your current working directory. choose a different location.\n")
             try:
                 newcommand = kt_command.split()[1]
@@ -137,7 +148,7 @@ def mainc(scr):
                 module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd])
             except Exception as e:
                 if bios == true:
-                    stdscr.addstr(e.__str__()  + "\n")
+                    stdscr.addstr(e.__str__() + "\n")
                 else:
                     stdscr.addstr("")
         else:
@@ -148,22 +159,18 @@ def mainc(scr):
                 module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd])
             except Exception as e:
                 if bios == true:
-                    stdscr.addstr(e.__str__()  + "\n")
+                    stdscr.addstr(e.__str__() + "\n")
                 else:
                     request = requests.get("https://github.com/Kai-Builder/" + kt_command)
 
                     if request.status_code == 200:
-                        request = requests.get("https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
+                        request = requests.get(
+                            "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
                         if request.status_code == 200:
-                            stdscr.addstr("command not found. But can be installed with:\npkg install {}\n".format(kt_command))
+                            stdscr.addstr(
+                                "command not found. But can be installed with:\npkg install {}\n".format(kt_command))
                     else:
                         stdscr.addstr("bash: unknown command.\n")
-
-
-
-
-
-
 
 
 wrapper(mainc)
