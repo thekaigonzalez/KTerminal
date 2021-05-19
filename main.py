@@ -1,7 +1,9 @@
 #!/venv/bin python
-
+import ctypes
 import os
 import sys
+
+import pathlib
 import requests
 import importlib as ipl
 
@@ -162,15 +164,20 @@ def mainc(scr):
                     stdscr.addstr(e.__str__() + "\n")
                 else:
                     request = requests.get("https://github.com/Kai-Builder/" + kt_command)
-
-                    if request.status_code == 200:
-                        request = requests.get(
-                            "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
-                        if request.status_code == 200:
-                            stdscr.addstr(
-                                "command not found. But can be installed with:\npkg install {}\n".format(kt_command))
-                    else:
-                        stdscr.addstr("bash: unknown command.\n")
+                    if pathlib.Path("usr/clib/" + kt_command + ".so").exists():
+                        if cfg["Bash"]["allowCExtensions"] == "yes":
+                            try:
+                                command_fromC = ctypes.CDLL("usr/clib/" + kt_command + ".so")
+                                command_fromC.init()
+                            except Exception:
+                                if request.status_code == 200:
+                                    request = requests.get(
+                                        "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
+                                    if request.status_code == 200:
+                                        stdscr.addstr(
+                                            "command not found. But can be installed with:\npkg install {}\n".format(kt_command))
+                                else:
+                                    stdscr.addstr("bash: unknown command.\n")
 
 
 wrapper(mainc)
