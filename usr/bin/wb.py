@@ -4,5 +4,5 @@ def main(s, a, c, o):
     for i in a:
         ctx += i
     w = open(name, 'wb')
-    w.write(b"{}".format(ctx))
+    w.write("{}".format(ctx))
     w.close()
