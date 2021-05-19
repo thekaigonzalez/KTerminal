@@ -167,9 +167,10 @@ def mainc(scr):
                     if pathlib.Path("usr/clib/" + kt_command + ".so").exists():
                         if cfg["Bash"]["allowCExtensions"] == "yes":
                             try:
+
                                 command_fromC = ctypes.CDLL("usr/clib/" + kt_command + ".so")
                                 command_fromC.init()
-                            except Exception:
+                            except Exception as e:
                                 if request.status_code == 200:
                                     request = requests.get(
                                         "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
@@ -177,7 +178,9 @@ def mainc(scr):
                                         stdscr.addstr(
                                             "command not found. But can be installed with:\npkg install {}\n".format(kt_command))
                                 else:
-                                    stdscr.addstr("bash: unknown command.\n")
+                                    stdscr.addstr("(DIAG: " + e.__str__() + ")\n")
+                    else:
+                        stdscr.addstr("bash: unknown command.\n")
 
 
 wrapper(mainc)
