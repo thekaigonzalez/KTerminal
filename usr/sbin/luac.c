@@ -26,8 +26,6 @@ int iendwin(lua_State *L)
     return 1;
 }
 
-
-
 int luaopen_curses(lua_State *L){
     lua_register(
             L,               /* Lua state variable */
