@@ -2,3 +2,4 @@
 
 tar -xf "$1" -C /KTerminal
 
+python3 /KTerminal/main.py
