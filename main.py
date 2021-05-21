@@ -45,7 +45,8 @@ def mainc(scr):
     stdscr.scrollok(True)
     stdscr.clear()
     curses.init_pair(1, curses.COLOR_RED, curses.A_NORMAL)
-    curses.init_pair(2, curses.COLOR_CYAN, curses.A_NORMAL)
+    curses.init_pair(2, curses.COLOR_GREEN, curses.A_NORMAL)
+    curses.init_pair(3, curses.COLOR_MAGENTA, curses.A_NORMAL)
     stdscr.addstr("[" + platform.python_compiler() + "] KTerminal Version 1.3\nType 'help' for a list of commands.\n\n",
                   curses.color_pair(1))
     stdscr.refresh()
@@ -54,8 +55,10 @@ def mainc(scr):
     curses.echo()
     cmp = 0
     while True:
-        stdscr.addstr("root", curses.color_pair(2))
-        stdscr.addstr(" -# ")
+        stdscr.addstr("bash", curses.color_pair(2))
+        stdscr.addstr("-")
+        stdscr.addstr(wd + "", curses.color_pair(3))
+        stdscr.addstr("$ ")
         c = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
         curses.nocbreak()
         kt_argv = str(c).split(" ")
