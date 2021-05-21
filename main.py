@@ -114,14 +114,17 @@ def mainc(scr):
                 stdscr.addstr("Runs given commands into ROOT.\nBase commands:\n\tget-apt\n\tsu_dev\n\tworking_dir\n")
         elif kt_command == "wd":
             stdscr.addstr(wd + "\n")
-        elif kt_command == "wd-c":
-            wd = kt_argv[0]
-            stdscr.addstr("new files and caches will be made in " + wd + " now.\n")
+        elif kt_command == "cd":
+            if pathlib.Path(' '.join(kt_argv) + "/IS_ENCRYPTED_SYSTEM").exists():
+                stdscr.addstr("path encrypted: process failed\n")
+            else:
+                wd = ' '.join(kt_argv)
+
         elif kt_command == "clear":
             stdscr.clear()
         elif kt_command == "printf":
             for arg in kt_argv:
-                stdscr.addstr(arg)
+                stdscr.addstr(arg + " ")
         elif kt_command == "echo":
             for arg in kt_argv:
                 stdscr.addstr(arg + " ")
