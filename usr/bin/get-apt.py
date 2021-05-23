@@ -39,7 +39,7 @@ def main(s, a, c , opts):
                     curses.napms(2000)
                     c = requests.request('GET', link_base_rawcontentlink + "/master/" + a[1] + ".py")
                     d = open("usr/bin/" + a[1] + ".py", 'w')
-                    d.write(c.text)
+                    d.write("#----------- BEGIN GENERATED LINE --------------#\nOFFICIAL=False\n#---------- END GENERATED LINE ----------#\n\n" + c.text)
                     d.close()
                     s.addstr("Success!\n")
                     curses.napms(1000)
