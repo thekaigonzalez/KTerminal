@@ -55,15 +55,15 @@ def mainc(scr):
     curses.echo()
     cmp = 0
     while True:
-        stdscr.addstr("bash", curses.color_pair(2))
-        stdscr.addstr("-")
+        stdscr.addstr("bash:~ ", curses.color_pair(2))
+        stdscr.addstr("")
         stdscr.addstr(wd + "", curses.color_pair(3))
         stdscr.addstr("$ ")
         c = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
         curses.nocbreak()
         kt_argv = str(c).split(" ")
 
-        kt_command = kt_argv.pop(0)
+        kt_command = kt_argv.pop(0).strip()
         history.append(kt_command)
         cmp += 1
         kt_argc = len(kt_argv)
@@ -169,6 +169,7 @@ def mainc(scr):
                 if bios == true:
                     stdscr.addstr(e.__str__() + "\n")
                 else:
+
                     request = requests.get("https://github.com/Kai-Builder/" + kt_command)
                     if pathlib.Path("usr/clib/" + kt_command + ".so").exists():
                         if cfg["Bash"]["allowCExtensions"] == "yes":
@@ -186,7 +187,7 @@ def mainc(scr):
                                 else:
                                     stdscr.addstr("(DIAG: " + e.__str__() + ")\n")
                     else:
-                        stdscr.addstr("bash: unknown command.\n")
+                        stdscr.addstr("Bash: Unknown Or command error.")
 
 
 wrapper(mainc)
