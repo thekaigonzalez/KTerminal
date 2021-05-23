@@ -7,7 +7,11 @@ all:
 	# this is the next stage, now: binary utilities will be created.
 	# (RUST MUST BE INSTALLED.)
 
-	rustc src/main.rs -o
+	rustc src/main.rs -o usr/clib/mcscs.x
+	gcc usr/kefi/kefi-wrapper.c -o -lcurses usr/kefi/kefi_wrapper.o
+	nasm usr/kefi/assembly/kefi_functioncall.asm -o usr/kefi/libkefi.o
+	gcc usr/kefi/kefi_load.c -o usr/kefi/kefi_l.o
+	ld usr/kefi/kefi_l.o usr/kefi/libkefi.o usr/kefi/kefi_wrapper.o -o usr/KEFI_LOAD
 run:
 	python3 main.py
 
