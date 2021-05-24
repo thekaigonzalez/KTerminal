@@ -8,11 +8,15 @@ was perfected and published on May 15th. With over 10 commands (Builtin, and ext
 the console has been built to support over 50 different compilers.
 
 KTerminal contains a bunch of symbols, and it's skeleton was built
-upon inspiration from the original BASH terminal, in 
-combination with the Arch Linux pre-setup terminal.
-![img.png](img.png)
+upon inspiration from the original BASH terminal.
 
-![img.png](img_2.png)
+
+Inspiration from Bash and it's utilities
+![img_3.png](img_3.png)
+
+
+Running commands from the ROOT user
+![img_4.png](img_4.png)
 
 The KTerminal features a Unix-Like file structure containing a ./usr directory,
 which stores python caches and essential files.
