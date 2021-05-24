@@ -1,5 +1,6 @@
 # Runs a command from ROOT.
 import curses
+import importlib
 
 import requests
 
@@ -18,9 +19,13 @@ def main(s: curses.window, a, c, o):
         ifdef = s.getstr().decode(encoding='utf-8')
         curses.echo()
         if ifdef == par["Info"]["PASSWORD"]:
-            terminal.eval.Evaluatecommand(a.pop(0) + " " + ' '.join(a), "./usr/sbin", s)
+
+            o.append(True)
+            terminal.eval.Evaluatecommand(a.pop(0) + " " + ' '.join(a), "./usr/sbin", s, o)
         else:
             s.addstr("invalid password.\n")
+            curses.echo()
     except Exception as we:
-        s.addstr("Login file not found. Please login by using the PWD utility.\n")
+
+        s.addstr("Login file not found. Please login by using the PWD utility.\n" + we.__str__() + "\n")
 
