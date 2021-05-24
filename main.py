@@ -39,6 +39,7 @@ def mainc(scr):
         elif sys.argv[1] == '--deb':
             debug = true
     stdscr = curses.initscr()
+    stdscr.keypad(True)
     cfg = configparser.ConfigParser()
     configs = cfg.read('./usr/.bashconfig')  # Load bash settings
     wd = cfg["User"]["Working_Directory"]
@@ -54,7 +55,11 @@ def mainc(scr):
 
     curses.echo()
     cmp = 0
+
     while True:
+        mypad = curses.newpad(40,60)
+        mypad_pos = 0
+        mypad.refresh(mypad_pos, 0, 5, 5, 10, 60)
         stdscr.addstr("bash:~ ", curses.color_pair(2))
         stdscr.addstr("")
         stdscr.addstr(wd + "", curses.color_pair(3))
@@ -71,7 +76,13 @@ def mainc(scr):
         if kt_command == "leave":
             curses.endwin()
         elif kt_command == "help":
-            stdscr.addstr("Commands:\nls\n")
+            arr = []
+            for fname in os.listdir("usr/bin"):
+                if fname.endswith(".py"):
+                    if not fname.startswith("__"):
+                        arr.append(fname[0:fname.rfind(".")])
+            stdscr.addstr("Commands:\n" + ' '.join(arr))
+            stdscr.addstr("\n")
         elif kt_command == "ls":
 
             if kt_argc == 0:
