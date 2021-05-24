@@ -17,4 +17,4 @@ def main(s,a,c,o):
                 else:
                     s.addstr("chmod: driver does not exist.\n")
     else:
-        s.addstr("I do not have full access to your files! please run chmod with the command:\nrooty chmod " + ' '.join(a) + "\n")
+        s.addstr("I do not have full access to your files! please run chmod with the command:\nsudo chmod " + ' '.join(a) + "\n")
