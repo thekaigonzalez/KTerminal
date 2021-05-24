@@ -57,9 +57,7 @@ def mainc(scr):
     cmp = 0
 
     while True:
-        mypad = curses.newpad(40,60)
-        mypad_pos = 0
-        mypad.refresh(mypad_pos, 0, 5, 5, 10, 60)
+
         stdscr.addstr("bash:~ ", curses.color_pair(2))
         stdscr.addstr("")
         stdscr.addstr(wd + "", curses.color_pair(3))
@@ -108,13 +106,7 @@ def mainc(scr):
             else:
                 stdscr.addstr(
                     "BIOS Is not set up correctly.\nRun the Python file with the --bios argument, and try again.\n")
-        elif kt_command == "sudo":
-            if kt_argv[0] == "get-apt":
-                if kt_argv[1] == "-h":
-                    stdscr.addstr(
-                        "Description: Gets a File (or package...file(S)) from a given website.\nspecify directories using the sudo -online <link> Commands.\nUsage: sudo get-apt <module>\n")
-            elif kt_argv[0] == "--help":
-                stdscr.addstr("Runs given commands into ROOT.\nBase commands:\n\tget-apt\n\tsu_dev\n\tworking_dir\n")
+
         elif kt_command == "wd":
             stdscr.addstr(wd + "\n")
         elif kt_command == "cd":
@@ -177,15 +169,21 @@ def mainc(scr):
                                 command_fromC.init()
                             except Exception as e:
                                 if request.status_code == 200:
-                                    request = requests.get(
+                                    request2 = requests.get(
                                         "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
-                                    if request.status_code == 200:
+                                    if request2.status_code == 200:
                                         stdscr.addstr(
                                             "command not found. But can be installed with:\nget-apt install {}\n".format(kt_command))
                                 else:
                                     stdscr.addstr("(DIAG: " + e.__str__() + ")\n")
                     else:
-                        stdscr.addstr(kt_command + ": unknown.\n")
-
+                        if request.status_code == 200:
+                            request2 = requests.get(
+                                "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
+                            if request2.status_code == 200:
+                                stdscr.addstr(
+                                    "command not found. But can be installed with:\nget-apt install {}\n".format(kt_command))
+                        else:
+                            stdscr.addstr("bash: unknown command.\n")
 
 wrapper(mainc)

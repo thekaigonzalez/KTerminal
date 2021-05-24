@@ -3,6 +3,7 @@
 
 #(REPLACEMENT FOR SUDO. SUDO DOES NOT WORK AS WELL. AND IS ABANDONED AND DEPRECATED)
 import curses
+import importlib
 import os
 
 import time
@@ -72,3 +73,15 @@ def main(s, a, c , opts):
                     s.addstr("Success!\n")
                 else:
                     s.addstr("module for {} not found.\n".format(a[1]))
+        elif a[0] == "-u":
+            try:
+                if importlib.import_module("usr.bin." + a[1]).OFFICIAL == True:
+                    s.addstr("get-apt: cannot delete system module\n")
+                else:
+                    try:
+                        s.addstr("deleting " + a[1] + "...\n")
+                        os.remove("usr/bin/" + a[1] + ".py")
+                    except Exception:
+                        s.addstr("")
+            except Exception:
+                s.addstr("cannot delete system module\n")
