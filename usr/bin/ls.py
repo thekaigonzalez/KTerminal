@@ -8,8 +8,8 @@ def main(s,a,c,o):
                       "[dir]\n")
     elif c == 1:
 
-        for file in os.listdir(o[4]):
-            s.addstr("~/" + o[4] + "/" + file + " ")
+        for file in os.listdir(a[0]):
+            s.addstr("~/" + a[0] + "/" + file + " ")
             s.addstr("\n")
 
     elif c == 2:
