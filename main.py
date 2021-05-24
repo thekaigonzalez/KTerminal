@@ -122,13 +122,7 @@ def mainc(scr):
 
         elif kt_command == "clear":
             stdscr.clear()
-        elif kt_command == "printf":
-            for arg in kt_argv:
-                stdscr.addstr(arg + " ")
-        elif kt_command == "echo":
-            for arg in kt_argv:
-                stdscr.addstr(arg + " ")
-            stdscr.addstr("\n")
+
         elif kt_command == "dofile":
             if kt_argc == 0:
                 stdscr.addstr("Missing required arguments. (FILE) (CONTENT)")
@@ -147,13 +141,14 @@ def mainc(scr):
                     "BIOS Tools are not set up properly.\nThis command is a BIOS only tool. Please run the program with the --bios argument and try again.\n")
         elif kt_command == "last_command":
             stdscr.addstr(history[cmp - 2])
+
         elif kt_command.startswith("#!"):
             if kt_command[3:len(kt_command) - 1] == "wd":
                 stdscr.addstr("that is your current working directory. choose a different location.\n")
             try:
                 newcommand = kt_command.split()[1]
                 module = ipl.import_module('usr.bin.' + newcommand)
-                module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd])
+                module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd, kt_command])
             except Exception as e:
                 if bios == true:
                     stdscr.addstr(e.__str__() + "\n")
@@ -164,7 +159,7 @@ def mainc(scr):
             try:
 
                 module = ipl.import_module('usr.bin.' + kt_command)
-                module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd])
+                module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd, kt_command])
             except Exception as e:
                 if bios == true:
                     stdscr.addstr(e.__str__() + "\n")
@@ -183,11 +178,11 @@ def mainc(scr):
                                         "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
                                     if request.status_code == 200:
                                         stdscr.addstr(
-                                            "command not found. But can be installed with:\npkg install {}\n".format(kt_command))
+                                            "command not found. But can be installed with:\nget-apt install {}\n".format(kt_command))
                                 else:
                                     stdscr.addstr("(DIAG: " + e.__str__() + ")\n")
                     else:
-                        stdscr.addstr("Bash: Unknown Or command error.")
+                        stdscr.addstr(kt_command + ": unknown.\n")
 
 
 wrapper(mainc)
