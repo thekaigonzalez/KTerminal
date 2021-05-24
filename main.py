@@ -83,15 +83,7 @@ def mainc(scr):
                         arr.append(fname[0:fname.rfind(".")])
             stdscr.addstr("Commands:\n" + ' '.join(arr))
             stdscr.addstr("\n")
-        elif kt_command == "ls":
 
-            if kt_argc == 0:
-                stdscr.addstr("Description: Lists Subdirectories in a given directory\nUsage: ls [-opts] [dir] or ls "
-                              "[dir]\n")
-            else:
-
-                for file in os.listdir(kt_argv[0]):
-                    stdscr.addstr("~/" + kt_argv[0] + "/" + file + "\n")
         elif kt_command == "pwd":
             stdscr.addstr("Choose a UserName: ")
             username = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
