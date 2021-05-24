@@ -83,17 +83,17 @@ def mainc(scr):
                     stdscr.addstr("~/" + kt_argv[0] + "/" + file + "\n")
         elif kt_command == "pwd":
             stdscr.addstr("Choose a UserName: ")
-            username = stdscr.getstr()
+            username = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
             curses.noecho()
             stdscr.addstr("Choose a Password: ")
-            password = stdscr.getstr()
+            password = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
             stdscr.addstr("Verify Password: ")
-            vp = stdscr.getstr()
+            vp = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
             curses.echo()
             if password == vp:
                 stdscr.addstr("User successfully set up.\n")
                 a = open('usr/beta/.private-login', 'w')
-                a.write("USERNAME=" + username + "\nPASSWORD=" + password)
+                a.write("[Info]\nUSERNAME=" + username + "\nPASSWORD=" + password)
                 a.close()
             else:
 
