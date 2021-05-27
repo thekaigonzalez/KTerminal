@@ -1,4 +1,3 @@
-#include <kterminal/curses_wrapper.h>
 
 #ifndef ALGOS__DECLAPI_H
 #define ALGOS__DECLAPI_H
