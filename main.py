@@ -186,8 +186,9 @@ def mainc(scr):
                                 if request2.status_code == 200:
                                     stdscr.addstr(
                                         "command not found. But can be installed with:\nsudo apt-get install {}\n".format(kt_command))
-                                elif request3.status_code == 200:
-                                    stdscr.addstr("Command not found, but can be installed with\nsudo apt-get install {}/{}\n".format("unix-core", kt_command))
+                                else:
+                                    if request3.status_code == 200:
+                                        stdscr.addstr("Command not found, but can be installed with\nsudo apt-get install {}/{}\n".format("unix-core", kt_command))
                             else:
                                 stdscr.addstr("bash: unknown command.\n")
                     except Exception as a:
