@@ -2,5 +2,5 @@ import importlib as imp
 
 
 
-def require(modname):
+def arch_require(modname):
     return imp.import_module(modname)
