@@ -4,9 +4,9 @@ import os
 # Distribution information is stored here for the default branches of KTerminal.
 # For Custom Distribution creation, please use the utility `dsch` to change the name. as it may break serialization.
 
-KTERMINAL_DEFAULT_DISTRIBUTION = "KTerminal Vanilla"
+KTERMINAL_DEFAULT_DISTRIBUTION = "KTerminal POSIX"
 
-KTERMINAL_DISTRIBUTION = "KTerminal Vanilla 1.10"
+KTERMINAL_DISTRIBUTION = "KTerminal POSIX 1.10-2"
 
 KTERMINAL_COMMAND_DISTRIBUTIONS = "KTerminal Vanilla Packaging Server Service - 1.10"
 
