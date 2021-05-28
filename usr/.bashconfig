@@ -1,6 +1,5 @@
 [User]
-Working_Directory=./usr/local
-
+Working_Directory=./home/
 [Buffer]
 Encoding=utf-8
 
