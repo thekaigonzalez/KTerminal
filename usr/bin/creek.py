@@ -79,11 +79,11 @@ def main(s, a, c , opts):
                     d.close()
                     s.addstr("Success!\n")
                 else:
-                    s.addstr("module for {} not found.\n".format(a[1]))
+                    s.addstr("creek: module for {} not found.\n".format(a[1]))
         elif a[0] == "-u":
             try:
                 if importlib.import_module("usr.bin." + a[1]).OFFICIAL == True:
-                    s.addstr("get-apt: cannot delete system module\n")
+                    s.addstr("creek: cannot delete system module\n")
                 else:
                     try:
                         s.addstr("deleting " + a[1] + "...\n")
