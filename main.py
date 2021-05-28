@@ -59,7 +59,8 @@ def mainc(scr):
 
     while True:
 
-        stdscr.addstr(open('usr/user.txt', 'r').readlines()[0] + "@" + open('usr/name.txt').readlines()[0] +":~ ", curses.color_pair(2))
+        stdscr.addstr(open('usr/user.txt', 'r').readlines()[0] + "@" + open('usr/name.txt').readlines()[0] + ":~ ",
+                      curses.color_pair(2))
         stdscr.addstr("")
         stdscr.addstr(wd + "", curses.color_pair(3))
         stdscr.addstr("$ ")
@@ -161,7 +162,10 @@ def mainc(scr):
                     stdscr.addstr(e.__str__() + "\n")
                 else:
                     try:
-                        request = requests.get("https://github.com/Kai-Builder/" + kt_command)
+                        request3 = requests.get(
+                            # https://raw.githubusercontent.com/thekaigonzalez/unix-core/master/whoami.py
+                            "https://raw.githubusercontent.com/thekaigonzalez/unix-core/master/" + kt_command + ".py")
+                        request = requests.get("https://github.com/thekaigonzalez/" + kt_command)
                         if pathlib.Path("usr/clib/" + kt_command + ".so").exists():
                             if cfg["Bash"]["allowCExtensions"] == "yes":
                                 try:
@@ -171,30 +175,40 @@ def mainc(scr):
                                 except Exception as e:
                                     if request.status_code == 200:
                                         request2 = requests.get(
-                                            "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
+                                            "https://raw.githubusercontent.com/thekaigonzalez/" + kt_command + "/master/" + kt_command + ".py")
                                         if request2.status_code == 200:
                                             stdscr.addstr(
-                                                "command not found. But can be installed with:\nget-apt install {}\n".format(kt_command))
+                                                "command not found. But can be installed with:\nget-apt install {}\n".format(
+                                                    kt_command))
                                     else:
                                         stdscr.addstr("(DIAG: " + e.__str__() + ")\n")
                         else:
                             if request.status_code == 200:
                                 request2 = requests.get(
-                                    "https://raw.githubusercontent.com/Kai-Builder/" + kt_command + "/master/" + kt_command + ".py")
-                                request3 = requests.get(
-                                    "https://raw.githubusercontent.com/Kai-Builder/unix-core/master/" + kt_command + ".py")
+                                    "https://raw.githubusercontent.com/thekaigonzalez/" + kt_command + "/master/" + kt_command + ".py")
+
                                 if request2.status_code == 200:
                                     stdscr.addstr(
-                                        "command not found. But can be installed with:\nsudo apt-get install {}\n".format(kt_command))
+                                        "command not found. But can be installed with:\nsudo apt-get install {}\n".format(
+                                            kt_command))
                                 else:
                                     if request3.status_code == 200:
-                                        stdscr.addstr("Command not found, but can be installed with\nsudo apt-get install {}/{}\n".format("unix-core", kt_command))
+                                        stdscr.addstr(
+                                            "Command not found, but can be installed with\nsudo apt-get install {}/{}\n".format(
+                                                "unix-core", kt_command))
                             else:
-                                stdscr.addstr("bash: unknown command.\n")
+                                if request3.status_code == 200:
+                                    stdscr.addstr(
+                                        "Command not found, but can be installed with\nsudo apt-get install {}/{}\n".format(
+                                            "unix-core", kt_command))
+                                else:
+                                    stdscr.addstr(kt_command + ": unknown command.\n")
                     except Exception as a:
                         stdscr.addstr("An Unknown error occurred.\na dump file has been created in usr/lib/CRASH.txt\n")
-                        deum = open('usr/lib/CRASH' + str(random.randint(0, 900)) + ".txt" ,'w')
-                        deum.write("CRASH exception occurred in proccess KTERMINAL_MAIN:\n\nCOMMAND RUN: " + kt_command + "\nSUPPLIED ARGUMENTS: " + str(kt_argv)  + "\nCRASH EXCEPTION: " + str(a) )
+                        deum = open('usr/lib/CRASH' + str(random.randint(0, 900)) + ".txt", 'w')
+                        deum.write(
+                            "CRASH exception occurred in proccess KTERMINAL_MAIN:\n\nCOMMAND RUN: " + kt_command + "\nSUPPLIED ARGUMENTS: " + str(
+                                kt_argv) + "\nCRASH EXCEPTION: " + str(a))
                         deum.close()
 
 

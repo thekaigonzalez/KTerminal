@@ -21,8 +21,9 @@ def main(s, a, c , opts):
         s.addstr("PKG for KTerminal.\nUse pkg install to begin.\n")
     elif c >= 1:
         if a[0] == "install":
-            curses.napms(1000)
+
             link_base = "http://github.com/Kai-Builder/" + a[1]
+            link_unixbinutils = "https://raw.githubusercontent.com/thekaigonzalez/unix-core/master/" + a[1] + ".py"
             link_base_rawcontentlink = "http://raw.githubusercontent.com/Kai-Builder/" + a[1]
             link_external = "http://github.com/" + a[1]
             link_external_rawcontentlink = "http://raw.githubusercontent.com/" + a[1] + ""
@@ -32,6 +33,12 @@ def main(s, a, c , opts):
             curses.napms(1000)
             s.addstr("reading database for {}\n".format(a[1]))
             curses.napms(800)
+            if requests.get(link_unixbinutils).status_code == 200:
+                s.addstr("# installing module from unix-binutil\n")
+                re = requests.request('GET', link_unixbinutils)
+                u = open('usr/bin/' + link_unixbinutils[link_unixbinutils.rfind('/')+1:len(link_unixbinutils)], 'w')
+                u.write(re.text)
+                u.close()
             if request.status_code == 200:
                 s.addstr("module found in verified area, checking for module's name ({}.py)\n ".format(a[1]))
                 daak = requests.get(link_base_rawcontentlink + "/master/" + a[1] + ".py")
@@ -84,4 +91,4 @@ def main(s, a, c , opts):
                     except Exception:
                         s.addstr("")
             except Exception:
-                s.addstr("cannot delete system module\n")
+                s.addstr("apt-get: cannot delete system module\n")
