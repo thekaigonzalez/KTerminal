@@ -156,8 +156,9 @@ def mainc(scr):
             try:
 
                 module = ipl.import_module('usr.bin.' + kt_command)
-                ipl.invalidate_caches()
+
                 module.main(stdscr, kt_argv, kt_argc, [bios, debug, beta, wd, kt_command])
+                ipl.invalidate_caches()
             except Exception as e:
                 if bios == true:
                     stdscr.addstr(e.__str__() + "\n")
