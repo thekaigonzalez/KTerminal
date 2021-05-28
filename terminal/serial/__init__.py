@@ -13,7 +13,7 @@ KTERMINAL_COMMAND_DISTRIBUTIONS = "KTerminal Vanilla Packaging Server Service - 
 
 KTERMINAL_DISTRIBUTION_V = "1.10"
 
-KTERMINAL_FLAVOR = "Silicon"
+KTERMINAL_FLAVOR = "Arch"
 
 KTERMINAL_STYLE = "GCC - Unix Bash"
 
