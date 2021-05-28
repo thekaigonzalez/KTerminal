@@ -10,7 +10,11 @@ the console has been built to support over 50 different compilers.
 KTerminal contains a bunch of symbols, and it's skeleton was built
 upon inspiration from the original BASH terminal.
 
+# KTerminal Arch
+KTerminal arch is a trial-and-error test distribution of KTerminal, edited from the source.
 
+KTerminal is flexible enough to support modifications,
+and easily too :)
 
 Inspiration from Bash and it's utilities
 
@@ -22,7 +26,9 @@ Running commands from the ROOT user
 
 ![img_4.png](img_4.png)
 
+The arch distribution
 
+![img_5.png](img_5.png)
 The KTerminal features a Unix-Like file structure containing a ./usr directory,
 which stores python caches and essential files.
 
