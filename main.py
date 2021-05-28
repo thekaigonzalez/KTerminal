@@ -59,7 +59,7 @@ def mainc(scr):
 
     while True:
 
-        stdscr.addstr(open('usr/name.txt', 'r').readlines()[0] + ":~ ", curses.color_pair(2))
+        stdscr.addstr(open('usr/user.txt', 'r').readlines()[0] + "@" + open('usr/name.txt').readlines()[0] +":~ ", curses.color_pair(2))
         stdscr.addstr("")
         stdscr.addstr(wd + "", curses.color_pair(3))
         stdscr.addstr("$ ")
