@@ -4,7 +4,7 @@ ROOT = False
 
 
 def main(s,a,c,o):
-
+    """ Checks driver integrities. """
     if len(o) == 6:
         if len(a) == 0:
             s.addstr("CHMOD Utility\n\tCheck system drivers and ensure everything is up to date.\n\nARGUMENTS\n\t[-f "
