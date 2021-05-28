@@ -21,6 +21,6 @@ KTERMINAL_PYTHON_TESTED_V = "3.8 - 3.9"
 
 KTERMINAL_BUILD = "KTerminal Python build 1.10 (Python 3.8) Silicon"
 
-KTERMINAL_DISPLAYNAME = "KTerminal Vanilla"
+KTERMINAL_DISPLAYNAME = "KTerminal Arch Edition-Dev"
 
 KTERMINAL_INTEGRITY_DEFAULTNAME = "KTerminal"
