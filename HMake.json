@@ -1,0 +1,11 @@
+{
+       "commands":  [
+              {
+                     "sourcefile": "main.py",
+                     "flags": "",
+                     "program": "python3"
+              }
+       ]
+
+
+}
