@@ -8,6 +8,8 @@ class ArgumentPasser:
         self.args = argarray
         self.optlist = []
         self.desc = ""
+        self.datalist = []
+        self.execlist = []
 
     def isoption(self, pos):
         if self.args[pos].startswith("-"):
@@ -23,10 +25,18 @@ class ArgumentPasser:
 
     def bindonce(self, option: str, func):
         self.optlist.append("[-" + option + " ...] ")
+        self.datalist += "-" + option
+        self.datalist.append(option)
+        self.execlist.append(func)
         for i in self.args:
             if i == "-" + option:
                 func(self.args, self)
-
+    def begin(self):
+        abc = 0
+        for i in self.args:
+            if i == self.datalist[abc]:
+                self.execlist[abc]()
+            abc += 1
     def setDesc(self, dec):
         self.desc = dec
 

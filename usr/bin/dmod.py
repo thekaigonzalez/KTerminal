@@ -21,7 +21,7 @@ def dui(a, o):
 def uin(a,o):
     printf("")
 def main(s: curses.window, a: list, c: int, o: list):
-    """ dMOD: Distribution MODification services
+    """ DMOD: Distribution MODification services
 
     dmod -c <distname> <diskfile>
     dmod -u <distname>
@@ -36,3 +36,4 @@ def main(s: curses.window, a: list, c: int, o: list):
     parser.bindonce("dUi", dui)
     parser.bindonce("u", uin)
     parser.bindonce("h", HelpCommand)
+    parser.begin()
