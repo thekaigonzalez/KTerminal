@@ -6,6 +6,7 @@ import terminal.io as io
 
 # s: curses.window, a: list[str], c: int, o: list[bool]
 def main(s: curses.window, a: list[str], c: int, o: list[bool]):
+    """Lists system specs"""
     s.clear()
     s.refresh()
 
