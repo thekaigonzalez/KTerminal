@@ -64,3 +64,8 @@ system is a very safer and much cleaner area.
 ## usr/sbin
 C Binaries are run in this location.
 C Scripts & Binaries are run from here.
+
+## CRASH.txt found in usr/lib
+crashes occur when the terminal can not process a command (Internet, internet exception, etc ...)
+
+(You should see my crashes, i have a couple lol)
