@@ -1,6 +1,6 @@
 import curses
 stdscr = curses.initscr()
-def printw(s: str):
+def printw(s):
     """
     Creates a screen and prints to the screen, simulating a stdscr print.
     You can also use the global variable "stdscr".
@@ -8,4 +8,4 @@ def printw(s: str):
     :return:
     """
     wnd = curses.initscr()
-    wnd.addstr(s + "\n")
+    wnd.addstr(str(s) + "\n")
