@@ -10,6 +10,7 @@ class ArgumentPasser:
         self.desc = ""
         self.datalist = []
         self.execlist = []
+        self.varlist = []
 
     def isoption(self, pos):
         if self.args[pos].startswith("-"):
@@ -31,7 +32,7 @@ class ArgumentPasser:
         for i in self.args:
             if i == "-" + option:
                 func(self.args, self)
-    def begin(self):
+    def bindv(self, name: str, metadata):
         abc = 0
         for i in self.args:
             if i == self.datalist[abc]:
