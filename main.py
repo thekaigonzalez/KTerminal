@@ -111,11 +111,7 @@ def mainc(scr):
 
         elif kt_command == "wd":
             stdscr.addstr(wd + "\n")
-        elif kt_command == "cd":
-            if pathlib.Path(' '.join(kt_argv) + "/IS_ENCRYPTED_SYSTEM").exists():
-                stdscr.addstr("path encrypted: process failed\n")
-            else:
-                wd = ' '.join(kt_argv)
+
 
         elif kt_command == "clear":
             stdscr.clear()
