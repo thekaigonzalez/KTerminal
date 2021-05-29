@@ -1,5 +1,7 @@
 import os
 
+import terminal.parser
+
 
 def main(s,a,c,o):
 
@@ -9,8 +11,8 @@ def main(s,a,c,o):
         s.addstr("\n")
     elif c == 1:
 
-        for file in os.listdir(a[0]):
-            s.addstr("~/" + a[0] + "/" + file + " ")
+        for file in os.listdir(terminal.parser.checkquotedstring(pos=0, array=a)):
+            s.addstr("~/" + terminal.parser.checkquotedstring(0, a) + "/" + file + " ")
             s.addstr("\n")
 
     elif c == 2:
