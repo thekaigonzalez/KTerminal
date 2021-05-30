@@ -52,9 +52,12 @@ class ArgumentPasser:
         a = stpos
         for variab in self.args:
             if variab.startswith("-"):
-                variablevalue = self.args[a + 1]
-                self.vardatas.append(variablevalue)
-                self.variables.append(self.args[a][1:len(variab)] + "=" + variablevalue)
+                if variab[1:len(variab)] not in self.optlist:
+                    variablevalue = self.args[a + 1]
+                    self.vardatas.append(variablevalue)
+                    self.variables.append(self.args[a][1:len(variab)] + "=" + variablevalue)
+                else:
+                    break
             a += 1
 
     def parseconfig_getpos(self, nameOrValue: str, stopPos: int = 0, ):
