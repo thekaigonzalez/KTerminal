@@ -10,7 +10,11 @@ class ArgumentPasser:
         self.desc = ""
         self.datalist = []
         self.execlist = []
-        self.varlist = []
+
+        self.variables = []
+
+        self.varnames = []
+        self.vardatas = []
 
     def isoption(self, pos):
         if self.args[pos].startswith("-"):
@@ -32,14 +36,48 @@ class ArgumentPasser:
         for i in self.args:
             if i == "-" + option:
                 func(self.args, self)
-    def bindv(self, name: str, metadata):
+
+    def begin(self):
         abc = 0
         for i in self.args:
             if i == self.datalist[abc]:
                 self.execlist[abc]()
+
             abc += 1
+
     def setDesc(self, dec):
         self.desc = dec
+
+    def extract(self, stpos: int):
+        a = stpos
+        for variab in self.args:
+            if variab.startswith("-"):
+                variablevalue = self.args[a + 1]
+                self.vardatas.append(variablevalue)
+                self.variables.append(self.args[a][1:len(variab)] + "=" + variablevalue)
+            a += 1
+
+    def parseconfig_getpos(self, nameOrValue: str, stopPos: int = 0, ):
+        posis = 0
+        for e in self.variables:
+
+            variablename = e[0:e.find("=")]
+            variablevalue = e[e.find("=") + 1:len(e)]
+            if posis == stopPos:
+                if nameOrValue == "NAME":
+                    return variablename
+                elif nameOrValue == "VALUE":
+                    return variablevalue
+                posis += 1
+
+    def setbindv(self, name: str, function, position=0):
+        if self.args[position].startswith("-"):
+            if self.args[position][1:len(self.args[position])]:
+                var = self.args[position + 1]
+                self.variables.append(name + "=" + var)
+                self.varnames.append(self.args[position][1:len(self.args[position])])
+                self.vardatas.append(var)
+                function(self.variables, self.varnames, self.vardatas)
 
     def sendhelp(self):
 
