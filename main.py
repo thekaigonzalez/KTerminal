@@ -166,6 +166,11 @@ def mainc(scr):
                             lines = file.readlines()
                             for i in lines:
                                 terminal.eval.Evaluatecommand(i, wd, stdscr, kt_argv)
+                        elif pathlib.Path("./" + kt_command).exists():
+                            file = open('./' + kt_command)
+                            lines = file.readlines()
+                            for i in lines:
+                                terminal.eval.Evaluatecommand(i, wd, stdscr, kt_argv)
                         else:
                             request3 = requests.get(
                                 # https://raw.githubusercontent.com/thekaigonzalez/unix-core/master/whoami.py
