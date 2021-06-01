@@ -11,6 +11,5 @@ def main(s: curses.window, a: list, c: int, o: list):
     """ Tests variables... Yes... """
     parser = AS.ArgumentPasser(a)
     parser.extract(0)
-    parser.bind
     printf(parser.parseconfig_getpos("VALUE", 0)) # Should return the first variable...
     parser.bindonce("h", HelpCommand)
