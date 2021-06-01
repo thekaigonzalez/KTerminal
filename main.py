@@ -74,7 +74,8 @@ def mainc(scr):
         history.append(kt_command)
         cmp += 1
         kt_argc = len(kt_argv)
-
+        if kt_command.startswith("#"):
+            stdscr.addstr("")
         if kt_command == "leave":
             curses.endwin()
         elif kt_command == "help":
