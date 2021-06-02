@@ -1,6 +1,7 @@
 import curses
 import os
 import pathlib
+import time
 
 from typing import List
 
@@ -42,7 +43,21 @@ def fsck_begin_flag(args: List[str], obj: argparse.ArgumentPasser):
                         printf("uninstalling " + i)
                         if i != "usr":
                             if i.__contains__("."):
-                                os.remove(i)
+                                if i != ".idea":
+                                    os.remove(i)
+                    printf("You are now in KTerminal post-boot mode!")
+                    printf("DO NOT PANIC! Everything on this end is fine, you've just hit KTerminal's END OF LIFE system. (RECOVERY)")
+                    printf("Everything you do from here on out has no effect on the KTerminal filesystems, and can cause errors.")
+                    printf("These errors are not fatal, HOWEVER, it's able to be reinstalled with the \"reinstall\" command.")
+                    printf("Type exit to confirm your uninstallation and exit forever.")
+                    while True:
+                        IO.stdscr.addstr("(ramfs) ")
+                        command = IO.stdscr.getstr().decode(encoding='utf-8')
+                        if command == "exit":
+                            printf("Goodbye! Thank you for using Kterminal. It will be shutting off now..")
+                            time.sleep(1)
+                            quit()
+
 
 def helpcomd(a, o):
     o.sendhelp()
