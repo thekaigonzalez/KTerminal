@@ -2,6 +2,7 @@ import curses
 import os
 import pathlib
 import time
+
 import gitpy
 from typing import List
 
