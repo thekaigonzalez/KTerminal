@@ -2,7 +2,7 @@ import curses
 import os
 import pathlib
 import time
-
+import gitpy
 from typing import List
 
 import terminal.io as IO
@@ -55,8 +55,24 @@ def fsck_begin_flag(args: List[str], obj: argparse.ArgumentPasser):
                         command = IO.stdscr.getstr().decode(encoding='utf-8')
                         if command == "exit":
                             printf("Goodbye! Thank you for using Kterminal. It will be shutting off now..")
-                            time.sleep(1)
+                            IO.stdscr.refresh()
+                            curses.napms(1000)
                             quit()
+                        elif command == "reinstall":
+                            printf("Reinstalling...")
+                            printf("any specific distribution you would like to install? Type it here. (Default: master)")
+
+                            distr = IO.stdscr.getstr().decode(encoding="utf-8")
+
+                            if distr is None:#git clone --single-branch --branch <branchname> <remote-repo>
+                                printf("None specified, choosing MASTER as default branch")
+                                os.system("git clone -b master https://github.com/Kai-Builder/KTerminal.git/")
+                            else:
+                                os.system("git clone -b " + distr + " https://github.com/Kai-Builder/KTerminal.git/")
+
+
+
+
 
 
 def helpcomd(a, o):
