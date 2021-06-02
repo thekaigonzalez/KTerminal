@@ -54,7 +54,7 @@ def fsck_begin_flag(args: List[str], obj: argparse.ArgumentPasser):
                         IO.stdscr.addstr("(ramfs) ")
                         command = IO.stdscr.getstr().decode(encoding='utf-8')
                         if command == "exit":
-                            printf("Goodbye! Thank you for using Kterminal. It will be shutting off now..")
+                            printf("Goodbye! Thank you for using KTerminal. It will be shutting off now..")
                             IO.stdscr.refresh()
                             curses.napms(1000)
                             quit()
@@ -66,9 +66,9 @@ def fsck_begin_flag(args: List[str], obj: argparse.ArgumentPasser):
 
                             if distr is None:#git clone --single-branch --branch <branchname> <remote-repo>
                                 printf("None specified, choosing MASTER as default branch")
-                                os.system("git clone -b master https://github.com/Kai-Builder/KTerminal.git/")
+                                os.system("git clone --single-branch --branch master https://github.com/Kai-Builder/KTerminal.git/")
                             else:
-                                os.system("git clone -b " + distr + " https://github.com/Kai-Builder/KTerminal.git/")
+                                os.system("git clone --single-branch --branch " + distr + " https://github.com/Kai-Builder/KTerminal.git/")
 
 
 
