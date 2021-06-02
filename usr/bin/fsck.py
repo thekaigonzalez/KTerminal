@@ -41,7 +41,8 @@ def fsck_begin_flag(args: List[str], obj: argparse.ArgumentPasser):
                     for i in os.listdir("."):
                         printf("uninstalling " + i)
                         if i != "usr":
-                            os.remove(i)
+                            if i.__contains__("."):
+                                os.remove(i)
 
 def helpcomd(a, o):
     o.sendhelp()
