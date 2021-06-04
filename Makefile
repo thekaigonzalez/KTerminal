@@ -5,6 +5,7 @@ all:
 	gcc knix/knix_terminal.cpp -lstdc++ -ldl -o sh
 	gcc knix/src/util/hello.cpp -fPIC -shared -o knix/usr/bin/hello
 	gcc knix/src/util/argdebug.cpp -fPIC -shared -o knix/usr/bin/argdebug
+	gcc knix/src/util/printf.cpp -fPIC -shared -o knix/usr/bin/printf
 
 	# this is the next stage, now: binary utilities will be created.
 	# (RUST MUST BE INSTALLED.)
