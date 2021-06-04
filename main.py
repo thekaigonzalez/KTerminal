@@ -60,12 +60,12 @@ def mainc(scr):
     cmp = 0
 
     while True:
-
+        curses.cbreak()
         stdscr.addstr(open('usr/user.txt', 'r').readlines()[0] + "@" + open('usr/name.txt').readlines()[0] + ":~ ",
                       curses.color_pair(2))
         stdscr.addstr("")
         stdscr.addstr(wd + "", curses.color_pair(3))
-        stdscr.addstr("$ ")
+        stdscr.addstr("~$ ")
         c = stdscr.getstr().decode(encoding=cfg["Buffer"]["Encoding"])
         curses.nocbreak()
         kt_argv = str(c).split(" ")
