@@ -7,10 +7,15 @@
 #include <sstream>
 #include <vector>
 
+//KEFI Runtime Utilities..
+
+void Print(const std::string&);
+//
+
 int main(int argc, char**argv)
 {
     while (true) {
-        std::cout << "(bash) ";
+        Print("(bash) ");
         std::string string;
         getline(std::cin, string);
         std::stringstream STRSTREAM;
