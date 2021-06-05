@@ -8,8 +8,9 @@
 #include <iostream>
 #include <vector>
 
-extern "C" void begin(const std::vector<std::string>&argv)
+extern "C" void begin(std::vector<std::string>&argv)
 {
+    argv.erase(argv.cbegin());
     for (const auto& I : argv)
     {
         std::cout << I << " " << std::endl;
