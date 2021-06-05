@@ -9,9 +9,11 @@ all:
 	gcc kefi-runtime/zip.cpp -lstdc++ -shared -o KEFI/zip.kefi
 	gcc kefi-runtime/runtime.cpp -lstdc++ -shared -fPIC -o KEFI/runtime.kefi
 	gcc kefi-runtime/zunit.cpp -lstdc++ -lzip -lstdc++fs -o ztest.exe
+
 	# this is the next stage, now: binary utilities will be created.
 	# (RUST MUST BE INSTALLED.)
-	cc knix/knix_terminal.cpp kefi-runtime/runtime.cpp -fPIC -lstdc++ -ldl -o sh
+	cc knix/knix_terminal.cpp kefi-runtime/runtime.cpp -lstdc++fs -lzip -fPIC -lstdc++ -ldl -o sh
+	cc knix/src/util/clear.cpp -shared -lcurses -fPIC -lstdc++ -o knix/usr/bin/ncurses-bin/clear
 
 	gcc usr/wd/primitive.c -S -o usr/Access.S
 run:

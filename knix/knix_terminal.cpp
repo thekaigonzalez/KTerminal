@@ -6,7 +6,7 @@
 #include <dlfcn.h>
 #include <sstream>
 #include <vector>
-
+#include "../kefi-runtime/zip-wrapper.h" /* walk_directory */
 //KEFI Runtime Utilities..
 
 void Print(const std::string&);
@@ -33,7 +33,15 @@ int main(int argc, char**argv)
             typedef void (*command_t)(const std::vector<std::string> &ArgumentArray);
             std::ifstream ifile("./knix/usr/bin/" + ARGUMENTS[0]);
             if (!ifile) {
-                std::cout << ARGUMENTS[0] + ": command not found\n";
+                std::ifstream ifiles("./knix/usr/bin/ncurses-bin/" + ARGUMENTS[0]);
+                if (ifiles) {
+                    void *lib = dlopen(("./knix/usr/bin/ncurses-bin/" + ARGUMENTS[0]).c_str(), RTLD_LAZY);
+                    auto command = (command_t) dlsym(lib, "curses_init");
+                    command(ARGUMENTS);
+                }
+                else {
+                    std::cout << ARGUMENTS[0] + ": command not found\n";
+                }
             } else {
                 void *lib = dlopen(("./knix/usr/bin/" + ARGUMENTS[0]).c_str(), RTLD_LAZY);
                 auto command = (command_t) dlsym(lib, "begin");
