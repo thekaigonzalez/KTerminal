@@ -4,3 +4,11 @@
 # Added by cargo
 
 /target
+
+__pycache__
+
+/usr/lib
+
+cache-deps.txt
+
+/.vscode
