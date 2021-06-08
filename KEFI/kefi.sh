@@ -1,3 +1,4 @@
+#!/usr/bin/sh
 parameterA=$1
 parameterB=$2
 parameterC=$3

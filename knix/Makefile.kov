@@ -1,0 +1,9 @@
+# GOTOP COMPILES
+
+GOTOP_DIR = ./gotop/
+
+
+
+
+gotop_system:
+	g++ gotop/src/assembler/SYS.cpp -o knix/gotop/bin/csh
