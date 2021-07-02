@@ -25,7 +25,7 @@ int main(int argc, char**argv)
         std::stringstream STRSTREAM;
         STRSTREAM << string;
         std::string argument;
-        std::vector<std::string> ARGUMENTS{};
+        std::vector<std::string> ARGUMENTS {};
         while (getline(STRSTREAM, argument, ' ')) {
             ARGUMENTS.push_back(argument);
         }

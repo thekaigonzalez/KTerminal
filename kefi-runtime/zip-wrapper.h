@@ -9,7 +9,7 @@
 #include <fstream>
 #include <utility>
 #include <zip.h>
-#include <experimental/filesystem>
+
 #include <filesystem>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -93,24 +93,6 @@ void AddArchiveWFile(std::string aname, std::string filename, std::string fileda
 
     zip_close(archives);
 }
-void AddArchiveWDirectory(const std::string &aname, const std::string& dirname)
-{
-    using namespace std;
-    const string& archive  = aname;
 
-
-    int error = 0;
-    zip *archives = zip_open(aname.c_str(), ZIP_CREATE, &error);
-
-        zip_source *source = zip_source_buffer(archives, aname.c_str(), sizeof(aname.c_str()), 0);
-
-
-    zip_dir_add(archives, dirname.c_str(), ZIP_FL_ENC_UTF_8);
-    for (const auto& Fn : experimental::filesystem::directory_iterator(dirname))
-    {
-        zip_file_add(archives, Fn.path().c_str(), source, ZIP_FL_OVERWRITE);
-    }
-    zip_close(archives);
-}
 
 
