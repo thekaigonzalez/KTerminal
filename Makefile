@@ -10,12 +10,13 @@ all:
 	gcc kefi-runtime/runtime.cpp -std=c++11 -lstdc++ -shared -fPIC -o KEFI/runtime.kefi
 	gcc kefi-runtime/zunit.cpp -std=c++11 -lstdc++ -lzip -o ztest.exe
 
-	# this is the next stage, now: binary utilities will be created.
-	# (RUST MUST BE INSTALLED.)
+	
 	cc knix/knix_terminal.cpp kefi-runtime/runtime.cpp -std=c++11  -lzip -fPIC -lstdc++ -ldl -o sh
 	cc knix/src/util/clear.cpp -shared -lcurses -fPIC -std=c++11 -lstdc++ -o knix/usr/bin/ncurses-bin/clear
 
 	gcc usr/wd/primitive.c -S -o usr/Access.S
+
+	make ./knix/Makefile.kov
 run:
 	python3 main.py
 
